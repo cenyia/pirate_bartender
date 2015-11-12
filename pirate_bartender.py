@@ -17,24 +17,32 @@ ingredients = {
 
 def drinkquestion ():
     choices = {}
-    for question in questions.values(): 
-        print (question)
-        input("""yes" or "no""") == 'yes' or 'y' 
-        questions.update(choices)
-            
+    for keyword, question in questions.items(): 
+        response = input(question)
+        if response == "yes":
+            choices[keyword] = True
+        else:
+            choices[keyword] = False
+                
+                
+        print(choices)
     return choices
 
 import random
 
-def drinkconstruct (choices):
+def drinkconstruct(choices):
     drink = []
-    for picks in choices.values:
-        drink.append(random.choice(ingredients[picks]))
+    for keyword, response in choices.items():
+        if response == True:
+            drink.append(random.choice(ingredients[keyword]))
+        else: 
+            response == False
+            
     return drink
     
 def main():
     choices = drinkquestion()
-    drink = drinkconstruct (choices)
+    drink = drinkconstruct(choices)
     print("I'm going to make you a drink that's out of this world and it's made out of: ", drink)
 
 if __name__ == "__main__":
